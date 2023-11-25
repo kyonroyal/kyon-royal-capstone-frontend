@@ -1,0 +1,42 @@
+// navbar.scss
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.nav {
+    background-color: $white;
+    border-bottom: 1px solid $mercury;
+
+    .nav__cntnt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        padding-inline: 1rem;
+        width: 100%;
+
+        @include tablet {
+            flex-direction: row;
+            padding: 1rem 3rem;
+            position: relative;
+        }
+
+        @include desktop {
+            padding-inline: 8rem;
+        }
+    }
+
+    .nav__logo {
+        height: 1.875rem;
+        width: auto;
+        margin-block: 1rem;
+        cursor: pointer;
+
+        @include tablet {
+            height: 2rem;
+        }
+
+        @include desktop {
+            height: 1.75rem;
+        }
+    }
+}

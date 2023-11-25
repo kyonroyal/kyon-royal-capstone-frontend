@@ -1,0 +1,111 @@
+@use './variables' as *;
+
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+@mixin button-hover {
+    &:hover {
+        background-color: $dark-blue;
+        border-color: $dark-blue;
+    }
+}
+
+@mixin button-focus {
+    &:focus {
+        border: 2px solid $blue;
+        outline: none;
+    }
+}
+
+@mixin small {
+    @media (max-width: $small-breakpoint) {
+        @content;
+    }
+}
+
+@mixin input {
+    height: 6.25rem;
+    resize: none;
+    padding: 0.6rem 0 0 0.6rem;
+    background-color: $alabaster;
+    border: 1px solid $mercury;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    color: $dark-black;
+
+    &::placeholder {
+        color: $dark-black;
+        font-size: 0.9rem;
+    }
+
+    @include button-focus;
+
+    @include tablet {
+        height: 2.5rem;
+        width: 30rem;
+        margin: 0;
+    }
+}
+
+@mixin button-blue {
+    border: 1px solid $blue;
+    border-radius: 4px;
+    height: 2.5rem;
+    background-color: $blue;
+    text-transform: uppercase;
+    color: $white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    cursor: pointer;
+
+    @include button-hover;
+
+    @include tablet {
+        width: 10rem;
+        margin-left: auto;
+        align-self: end;
+        margin-bottom: 0;
+    }
+
+    @include desktop {
+        margin-right: 6rem;
+        font-size: 0.85rem;
+    }
+
+    &-icon {
+        background-color: transparent;
+        position: absolute;
+        left: 0.5rem;
+        height: 1.2rem;
+
+        @include tablet {
+            bottom: 0.6rem;
+            height: 1.1rem;
+        }
+    }
+}
+
+@mixin button-transparent {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    height: 2.5rem;
+    background-color: transparent;
+    text-transform: uppercase;
+    color: $blue;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    cursor: pointer;
+}
