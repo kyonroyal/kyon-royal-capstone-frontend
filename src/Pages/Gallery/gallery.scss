@@ -1,0 +1,70 @@
+/* gallery.scss */
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    
+  
+    .main__one {
+      flex: 1;
+  
+      .artist-info {
+        background-color: #f8f8f8;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+        .artist-info__title {
+          font-size: 2em;
+          margin-bottom: 10px;
+        }
+  
+        .artist-info__art-style,
+        .artist-info__zip-code {
+          font-size: 1.2em;
+          color: #555;
+          margin-bottom: 10px;
+        }
+  
+        .artist-info__profile-image {
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+  
+        .artist-info__portfolio {
+          h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+          }
+  
+          ul {
+            list-style-type: none;
+            padding: 0;
+  
+            li {
+              font-size: 1.2em;
+              margin-bottom: 5px;
+  
+              a {
+                color: #61dafb;
+                text-decoration: none;
+  
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .main__two {
+      flex: 1;
+    }
+  }
+  

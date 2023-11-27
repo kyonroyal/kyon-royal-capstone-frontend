@@ -6,14 +6,16 @@ const portfolio = ({ user }) => {
     <div>
       <h2>{user.name}'s Portfolio</h2>
       <ul>
-        {user.portfolio.map((item, index) => (
-          <li key={index}>
-            <img src={item.url} alt={`Portfolio Image ${index + 1}`} />
-          </li>
-        ))}
-      </ul>
+                {portfolio.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                      Portfolio Image {index + 1}
+                    </a>
+                  </li>
+                ))}
+              </ul> 
     </div>
   );
 };
 
-export default Portfolio;
+export default portfolio;

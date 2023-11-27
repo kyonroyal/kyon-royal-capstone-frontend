@@ -7,7 +7,7 @@ import './find.scss'
 
 
 function Find() {
-    const localhost = '192.168.0.88'; // Update this to your localhost
+    const localhost = '172.20.10.3'; // Update this to your localhost
     const googleMapsApiKey = 'AIzaSyAcIzDGRwzVEDZL7lyxAWsR-W_wSTHNY6c';
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -164,30 +164,9 @@ function Find() {
     return (
         <div className="dash">
              <Navbar/>
-            <div className='map' style={{ height: '400px', width: '100%' }}>
-                {!isLoading && (
-                    <GoogleMapReact
-                        bootstrapURLKeys={{ key: googleMapsApiKey }}
-                        defaultCenter={defaultProps.center}
-                        defaultZoom={defaultProps.zoom}
-                        options={{ styles: customMapStyles }}
-                    >
-                        {users.map((user) => (
-                            user.coordinates ? (
-                                <UserMarker
-                                    key={user.id}
-                                    lat={user.coordinates.lat}
-                                    lng={user.coordinates.lng}
-                                    name={user.name}
-                                />
-                            ) : null
-                        ))}
-                    </GoogleMapReact>
-                )}
-            </div>
                
             <div>
-                <p className="artist-title">Find Nearby artists here ⬇</p>
+                <p className="artist-title">Find Nearby artists </p>
                 {sortedUsers.map(users => (
                     <div className="artist" key={users[0].id}>
                         <p className="artist">Artists at zip code <u>{users[0].zip}</u>:</p>
@@ -214,6 +193,27 @@ function Find() {
                     </label>
                     <button type="submit">coKraft!</button>
                 </form>
+            </div>
+            <div className='map' style={{ height: '400px', width: '100%' }}>
+                {!isLoading && (
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: googleMapsApiKey }}
+                        defaultCenter={defaultProps.center}
+                        defaultZoom={defaultProps.zoom}
+                        options={{ styles: customMapStyles }}
+                    >
+                        {users.map((user) => (
+                            user.coordinates ? (
+                                <UserMarker
+                                    key={user.id}
+                                    lat={user.coordinates.lat}
+                                    lng={user.coordinates.lng}
+                                    name={user.name}
+                                />
+                            ) : null
+                        ))}
+                    </GoogleMapReact>
+                )}
             </div>
         </div>
     );

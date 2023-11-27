@@ -1,61 +1,111 @@
 
 
-
-.artist-form {
+.dash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+  }
+  
+  .map {
+    margin-bottom: 20px;
+  }
+  
+  .user-marker {
+    background-color: #61dafb;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .artist {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  
+    u {
+      font-weight: bold;
+    }
+  
+    .user {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+  
+      a {
+        text-decoration: none;
+        color: #61dafb;
+        cursor: pointer;
+  
+        div {
+          margin-left: 10px;
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+  
+  .artist-form {
     background-color: white;
     padding: 20px;
-    border: 1px solid lavender;
+    border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 400px;
     margin: 0 auto;
-}
-
-.artist {
-    display: flex;
-    font-size: 2rem;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-
-   
-
-        &-group {
-            margin-bottom: 10px;
-        }
-
-        &__label {
-            color: orange;
-            display: block;
-            text-align: left;
-        }
-
-        &__input {
-            width: 90%;
-            padding: 5px;
-            margin-top: 5px;
-            border: 1px solid orange;
-            display: block;
-        }
-
-        &__button {
-            margin-top: 0.625rem;
-            background-color: rgb(240, 144, 87);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            height: 10vh;
-            font-size: 1.5rem;
-            width: 30vh;
-        }
+  
+    h3 {
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 20px;
     }
-.artist-title{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-around;
-}
-.artist-form1{
-    display: flex;
-}
+  
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        color: black;
+      }
+  
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+  
+      .artist-form1 {
+        margin-bottom: 10px;
+      }
+  
+      button {
+        margin-top: 15px;
+        background-color: grey;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        height: 40px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .artist-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  

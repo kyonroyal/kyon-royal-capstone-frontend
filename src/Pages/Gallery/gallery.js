@@ -6,6 +6,7 @@ import NextPhotos from '../../Components/NextPhotos/nextPhotos.js';
 import ArtistInfo from '../../Components/ArtistsInfo/artistsInfo.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import "../Gallery/gallery.scss"
 
 
 function Gallery() {
@@ -49,7 +50,7 @@ function Gallery() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:1234/api/data/${id}`) // Adjust the endpoint based on your API
+        .get(`http://localhost:1234/api/data/`) // Adjust the endpoint based on your API
         .then((response) => {
           setCurrentArtist(response.data);
         })
@@ -71,7 +72,7 @@ function Gallery() {
       </header>
       <main className='main'>
         <section className='main__one'>
-          <ArtistInfo artistDetails={currentArtist} />
+          <ArtistInfo artist={currentArtist} />
                    
         </section>
         <section className='main__two'>

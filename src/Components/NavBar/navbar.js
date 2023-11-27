@@ -33,11 +33,11 @@ function Navbar() {
                 </NavLink>
                     
                 </div>
-                <NavLink className="nav__upld-btn-link" to="/upload">
+                {/* <NavLink className="nav__upld-btn-link" to="/upload">
                     <button className="nav__upld-btn">
                         <img className='nav__upld-btn-icon' src={uploadIcon} alt="Upload Icon" />Upload
                     </button>
-                </NavLink>
+                </NavLink> */}
             </div>
         </nav>
     )
