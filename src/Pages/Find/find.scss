@@ -1,0 +1,61 @@
+
+
+
+.artist-form {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid lavender;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    margin: 0 auto;
+}
+
+.artist {
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+
+   
+
+        &-group {
+            margin-bottom: 10px;
+        }
+
+        &__label {
+            color: orange;
+            display: block;
+            text-align: left;
+        }
+
+        &__input {
+            width: 90%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid orange;
+            display: block;
+        }
+
+        &__button {
+            margin-top: 0.625rem;
+            background-color: rgb(240, 144, 87);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            height: 10vh;
+            font-size: 1.5rem;
+            width: 30vh;
+        }
+    }
+.artist-title{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.artist-form1{
+    display: flex;
+}

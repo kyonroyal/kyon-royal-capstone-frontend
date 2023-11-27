@@ -1,0 +1,14 @@
+
+
+.upload__form__input-group{
+    display: flex;
+                flex-direction: column;
+}
+.upload__thumbnail {
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+    border-color: transparent;
+    height: 10rem;
+    width: 100%;
+}

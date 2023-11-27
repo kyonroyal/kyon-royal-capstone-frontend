@@ -17,7 +17,12 @@ function ArtistInfo({ artist }) {
           <h2 className='artist-info__zip-code'>Zip Code: {zipCode}</h2>
         </div>
         <div className='artist-info__group profile-portfolio'>
-          <img className='artist-info__profile-image' src={profileImage} alt={`${name}'s profile`} />
+        <img
+  className='artist-info__profile-image'
+  src={process.env.PUBLIC_URL + profileImage}
+  alt={`${name}'s profile`}
+/>
+
           {portfolio && portfolio.length > 0 && (
             <div className='artist-info__portfolio'>
               <h3>Portfolio</h3>

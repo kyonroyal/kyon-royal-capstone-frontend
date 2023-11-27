@@ -1,159 +1,222 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Map from '../../Components/Map/map';
-import Navbar from '../../Components/NavBar/navbar';
+import GoogleMapReact from 'google-map-react';
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../Components/NavBar/navbar";
+import './find.scss'
+
+
 function Find() {
-  const [users, setUsers] = useState([]);
-  const [markers, setMarkers] = useState([]);
-  const [successfulSubmission, setSuccessfulSubmission] = useState(false);
-  const [nearestArtists, setNearestArtists] = useState([]);
+    const localhost = '192.168.0.88'; // Update this to your localhost
+    const googleMapsApiKey = 'AIzaSyAcIzDGRwzVEDZL7lyxAWsR-W_wSTHNY6c';
+    const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [formData, setFormData] = useState({
+        name: '',
+        zip: '',
+    });
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAcIzDGRwzVEDZL7lyxAWsR-W_wSTHNY6c&libraries=places`;
-    script.async = true;
-    script.defer = true;
+    const navigate = useNavigate();
 
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
+    const handleFormChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
-  }, []);
 
-  // checks if a zip is valid and translates it into lat/lng coordinates
-  async function geocodeZipCode(zipCode) {
-    try {
-      const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=AIzaSyAcIzDGRwzVEDZL7lyxAWsR-W_wSTHNY6c`
-      );
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
-      if (response.data.status === 'OK') {
-        const location = response.data.results[0].geometry.location;
-        return location;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.error('Geocoding error:', error);
-      return false;
+        if (!formData.name || !formData.zip) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        try {
+            const coordinates = await geocodeZipCode(formData.zip);
+
+            if (coordinates) {
+                const newUser = {
+                    name: formData.name,
+                    zip: formData.zip,
+                    coordinates: coordinates,
+                };
+
+                await addUser(newUser);
+            } else {
+                alert('Invalid zip code. Please provide a valid zip code.');
+            }
+        } catch (error) {
+            console.error('Error submitting artist:', error);
+        }
+    };
+
+    async function geocodeZipCode(zipCode) {
+        try {
+            const response = await axios.get(
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${googleMapsApiKey}`
+            );
+
+            if (response.data.status === 'OK') {
+                return response.data.results[0].geometry.location;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.error('Geocoding error:', error);
+            return null;
+        }
     }
-  }
 
-  // handles the form submission
-  async function handleFormSubmit(event) {
-    event.preventDefault();
-
-    const name = event.target.name.value;
-    const zip = event.target.zip.value;
-
-    if (!name || !zip) {
-      alert('Fields cannot be empty');
-      return;
+    async function addUser(newUser) {
+        try {
+            const response = await axios.post(`http://${localhost}:8080/users`, newUser);
+            const updatedUsers = [...users, response.data];
+            setUsers(updatedUsers);
+            setFormData({
+                name: '',
+                zip: '',
+            });
+        } catch (error) {
+            console.error('Error adding user:', error);
+        }
     }
 
-    try {
-      const coordinates = await geocodeZipCode(zip);
+    useEffect(() => {
+        setIsLoading(true);
 
-      if (!coordinates) {
-        alert('Please provide a valid zip code!');
-      } else {
-        const newUser = {
-          name: name,
-          zip: zip,
-          coordinates: coordinates,
-        };
-        addUser(newUser, coordinates);
-      }
-    } catch (error) {
-      console.error(error.status);
+        async function fetchData() {
+            try {
+                const jsonResponse = await axios.get(`http://${localhost}:8080/users`);
+                const usersFromJson = jsonResponse.data;
+                const usersWithCoordinatesPromises = usersFromJson.map(async (user) => {
+                    if (user.zip) {
+                        const coordinates = await geocodeZipCode(user.zip);
+                        if (coordinates) {
+                            return { ...user, coordinates };
+                        }
+                    }
+                    return null;
+                });
+                const usersWithCoordinates = (await Promise.all(usersWithCoordinatesPromises))
+                    .filter(user => user && user.coordinates);
+
+                setUsers(usersWithCoordinates);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    const defaultProps = {
+        center: {
+            lat: 25.761681,
+            lng: -80.191788,
+        },
+        zoom: 10,
+    };
+
+    const customMapStyles = [
+        {
+            featureType: "all",
+            elementType: "geometry",
+            stylers: [
+                { saturation: -50 },
+                { lightness: 40 },
+            ]
+        }
+    ];
+
+    const UserMarker = ({ name }) => {
+        return (
+            <div className="user-marker">
+                {name}
+            </div>
+        );
+    };
+
+    function groupUsers(usersArray) {
+        let matrix = [];
+        let sorted = [...usersArray].sort((a, b) => a.zip - b.zip);
+
+        while (sorted.length > 0) {
+            let current = sorted[0].zip;
+            let currentList = [];
+
+            for (let i = 0; i < sorted.length; i++) {
+                if (sorted[i].zip === current) {
+                    currentList.push(sorted[i]);
+                }
+            }
+            matrix.push(currentList);
+            sorted = sorted.filter((user) => user.zip !== current);
+        }
+        return matrix;
     }
-  }
 
-  // adds a new user
-  async function addUser(newUser, coordinates) {
-    try {
-      const response = await axios.post(`http://localhost:1234/`, newUser);
-      window.location.href = '/successful-registration';
-      setUsers([...users, newUser]);
-      setMarkers([...markers, newUser.coordinates]);
-      groupNearestArtists(coordinates);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+    const sortedUsers = groupUsers(users);
 
-  // groups artists based on proximity to the given coordinates
-  function groupNearestArtists(userCoordinates) {
-    const groupedArtists = users.reduce((groups, artist) => {
-      const distance = calculateDistance(userCoordinates, artist.coordinates);
-      if (!groups[distance]) {
-        groups[distance] = [];
-      }
-      groups[distance].push(artist);
-      return groups;
-    }, {});
+    return (
+        <div className="dash">
+             <Navbar/>
+            <div className='map' style={{ height: '400px', width: '100%' }}>
+                {!isLoading && (
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: googleMapsApiKey }}
+                        defaultCenter={defaultProps.center}
+                        defaultZoom={defaultProps.zoom}
+                        options={{ styles: customMapStyles }}
+                    >
+                        {users.map((user) => (
+                            user.coordinates ? (
+                                <UserMarker
+                                    key={user.id}
+                                    lat={user.coordinates.lat}
+                                    lng={user.coordinates.lng}
+                                    name={user.name}
+                                />
+                            ) : null
+                        ))}
+                    </GoogleMapReact>
+                )}
+            </div>
+               
+            <div>
+                <p className="artist-title">Find Nearby artists here ⬇</p>
+                {sortedUsers.map(users => (
+                    <div className="artist" key={users[0].id}>
+                        <p className="artist">Artists at zip code <u>{users[0].zip}</u>:</p>
+                        {users.map(user => (
+                            <div className='user' key={user.id}>
+                                {user.name}
+                                <Link to={`/update-user/${user.id}`}><div>🖊</div></Link>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
 
-    // Sort the groups based on distance
-    const sortedGroups = Object.keys(groupedArtists).sort((a, b) => parseFloat(a) - parseFloat(b));
-
-    // Update the state with nearest artists
-    const nearestArtists = sortedGroups.map(distance => groupedArtists[distance]).flat();
-    setNearestArtists(nearestArtists);
-  }
-
-  // calculates the distance between two sets of coordinates
-  function calculateDistance(coord1, coord2) {
-    const R = 6371; // Radius of the Earth in km
-    const dLat = deg2rad(coord2.lat - coord1.lat);
-    const dLon = deg2rad(coord2.lng - coord1.lng);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(coord1.lat)) * Math.cos(deg2rad(coord2.lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in km
-    return distance;
-  }
-
-  // converts degrees to radians
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
-
-  return (
-    
-    <div className="find-artists">
-        <Navbar />
-      <form className="find-artists__form" onSubmit={handleFormSubmit}>
-        <div className="find-artists__form-group">
-          <label className="find-artists__label" htmlFor="name">
-            Name:
-            <input type="text" id="name" name="name" className="find-artists__input" placeholder="Name" />
-          </label>
+            <div className="artist-form">
+                <h3>Find an Artist</h3>
+                <form onSubmit={handleFormSubmit}>
+                    <label>
+                        Name:
+                        <input className="artist-form1" type="text" name="name" value={formData.name} onChange={handleFormChange} />
+                    </label>
+                    <label className="artist-form2">
+                        Zip Code:
+                        <input type="text" name="zip" value={formData.zip} onChange={handleFormChange} />
+                    </label>
+                    <button type="submit">coKraft!</button>
+                </form>
+            </div>
         </div>
-        <div className="find-artists__form-group">
-          <label className="find-artists__label" htmlFor="zip">
-            Zip Code:
-            <input type="text" id="zip" name="zip" className="find-artists__input" placeholder="Zip Code" />
-          </label>
-        </div>
-        <button className="find-artists__button" type="submit">
-          Submit
-        </button>
-      </form>
-
-      <div className="nearest-artists-list">
-        <h2>Nearest Artists:</h2>
-         {/* <Map/>  */}
-        <ul>
-          {nearestArtists.map(artist => (
-            <li key={artist.name}>{artist.name}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Find;

@@ -2,11 +2,12 @@
 // UploadPage.js
 import React from 'react';
 import Navbar from '../../Components/NavBar/navbar';
-import publishIcon from '../../assets/publish.svg';
+import publishIcon from '../../assets/gallery-add-broken.svg';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import defaultThumbnail from '../../assets/alec.jpg';
+import defaultThumbnail from '../../assets/image-outline.svg';
+import '../Upload/upload.scss'
 
 function Upload() {
   const navigate = useNavigate();
@@ -35,32 +36,32 @@ function Upload() {
   return (
     <>
       <Navbar />
-      <h1 className="upload__header">Upload Photo</h1>
+      <h1 className="upload__header">Post Painting</h1>
       <section className="upload">
         <form onSubmit={handleSubmit}>
           <article className="upload__form">
             <div className="upload__thumbnail-container">
-              <h3 className="upload__thumbnail-header">Photo thumbnail</h3>
+              <h3 className="upload__thumbnail-header">Painting thumbnail</h3>
               <img className="upload__thumbnail" src={defaultThumbnail} alt="upload thumbnail"></img>
             </div>
 
             <div className="upload__form__input-group">
               <label className="upload__form__label" htmlFor="photo-title">
-                Title your photo
+                Title your painting
               </label>
               <input
                 className="upload__form__input"
-                placeholder="Add a title to your photo"
+                placeholder="Add a title to your painting"
                 type="text"
                 name="photo-title"
                 id="photo-title"
               ></input>
               <label className="upload__form__label" htmlFor="photo-description">
-                Add a photo description
+                Add a painting description
               </label>
               <textarea
                 className="upload__form__input-textarea"
-                placeholder="Add a description to your photo"
+                placeholder="Add a description to your painting"
                 type="text"
                 name="photo-description"
                 id="photo-description"
@@ -71,7 +72,7 @@ function Upload() {
           <div className="upload__form__buttons-container">
             <button className="upload__form__submit-button" type="submit">
               <img className="upload__form__submit-button-icon" src={publishIcon} alt="Publish Icon"></img>
-              Publish
+              Post
             </button>
             <Link className="upload__form__cancel-button-link" to="/">
               <button className="upload__form__cancel-button">Cancel</button>

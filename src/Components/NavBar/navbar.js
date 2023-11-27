@@ -3,26 +3,34 @@ import React from 'react';
 import logoImage from '../../assets/cokraft.png';
 import uploadIcon from '../../assets/upload.svg';
 import searchIcon from '../../assets/search.svg';
+import galleryIcon from '../../assets/gallery-bold.svg'
+import post from '../../assets/gallery-add-broken.svg'
+import find from '../../assets/find-one.svg'
 import { NavLink } from 'react-router-dom';
 import '../NavBar/navbar.scss'
+import motion from 'framer-motion'
 
 
 function Navbar() {
     return (
         <nav className="nav">
+            
             <div className="nav__cntnt">
-                <NavLink to="/">
+                <NavLink to="/home">
                     <img className="nav__logo" src={logoImage} alt="Logo" href="#" />
                 </NavLink>
                 <div className="nav__sub-cntnt">
-                    <label className="nav__search-label">
-                        <img className='nav__search-input-icon' src={searchIcon} alt="Search Icon" />
-                        <input className="nav__search-input" placeholder="Search" />
-                    </label>
-                    
-                    <NavLink className="nav__nav-link" to="/gallery">Gallery</NavLink>
-                    <NavLink className="nav__nav-link" to="/find">Find Artist</NavLink>
-                    <NavLink className="nav__nav-link" to="/upload">Upload</NavLink>
+                   
+             
+                    <NavLink to="/gallery">
+                    <img className="galleryicon" src={galleryIcon} alt="gallery" href="#" />
+                </NavLink>
+                <NavLink to="/find">
+                    <img className="findartist" src={find} alt="findartist" href="#" />
+                </NavLink>
+                <NavLink to="/upload">
+                    <img className="upload" src={post} alt="upload" href="#" />
+                </NavLink>
                     
                 </div>
                 <NavLink className="nav__upld-btn-link" to="/upload">
