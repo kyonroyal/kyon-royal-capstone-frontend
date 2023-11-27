@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+What is your app? Brief description in a couple of sentences.
+ a web application designed to connect artists worldwide who seek collaboration on both physical and digital art pieces. Artists can create profiles showcasing their unique styles and portfolios, fostering connections with like-minded collaborators. The platform goes beyond the digital realm, allowing artists to organize local meet-ups or connect based on geolocation, enhancing both virtual and physical collaborations.
 
-In the project directory, you can run:
+### Problem
 
-### `npm start`
+Why is your app needed? Background information around any pain points or other reasons.
+Artists face challenges in finding suitable collaborators, especially when seeking both digital and physical art collaboration opportunities. cokraft addresses this by providing a space where artists can connect, showcase their styles, and organize collaborative efforts, whether they are working together online or meeting locally based on zip code.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### User Profile
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Who will use your app? How will they use it? Any special considerations that your app must take into account.
+Artists of diverse backgrounds and styles will use the platform to connect with potential collaborators.  The platform should cater to artists ranging from beginners to experienced professionals.
 
-### `npm run build`
+### Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
+User Profiles and Portfolios:
+Artists can create profiles showcasing their portfolios and artistic styles.
+Include options for specifying collaboration preferences (digital, physical, local meet-ups).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Local Meet-Ups and Geolocation:
+Artists can organize local meet-ups and collaborate in person.
+Geolocation features for connecting with nearby artists interested in collaboration.
+Chat and Communication:
+Real-time chat system for artists to discuss ideas and coordinate collaborations.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Implementation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
+Frontend: React
+Real-Time Collaboration: WebSockets
+Backend: Node.js with Express
+Fire base
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### APIs
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+List any external sources of data that will be used in your app.
+Geolocation API for connecting artists based on location.
 
-## Learn More
+Google Maps Api
+Backend with User Data
+### Sitemap
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+List the pages of your app with brief descriptions. You can show this visually, or write it out.
+Home
+Find Artists
+Gallery Page
+User Profile
+Nearest Artists
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Mockups
 
-### Code Splitting
+Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Data
 
-### Analyzing the Bundle Size
+Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
+User data (profiles, ratings, collaboration preferences)
+Chat history
+### Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+/api/data (GET, POST)
+/api/find (GET, POST)
+/api/gallery (GET, POST)
+/api/home (GET, POST)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Auth
 
-### Advanced Configuration
+Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+I will use firebase for this Aunthentication
 
-### Deployment
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
+Week 1: Planning and Setup
 
-### `npm run build` fails to minify
+Define detailed project scope and milestones.
+Set up project structure and version control.
+Week 2: Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Implement React components for user profiles, canvas, chat, and other features.
+Integrate real-time collaboration features.
+Develop backend using Node.js.
+Implement endpoints for user profiles, collaborative canvas, chat, and meet-ups.
+Week 3: Testing, Refinement, and Deployment
+
+Conduct thorough testing of the platform.
+Gather user feedback and make necessary refinements.
+Choose and integrate a database.
+Implement authentication and authorization.
+Address security concerns.
+Create user documentation and developer guides.
+Deploy the Art Collaboration Platform to a limited audience for testing.
+
+User authentication using JWT
+## Nice-to-haves
+Integration with external art-related APIs for additional artistic tools.
+Mobile responsiveness for a seamless experience on different devices.
+Additional geolocation features for better collaboration organization.
+Integration with social media platforms for broader artist reach.
+
+I would also like to have a chat functionality to be able to reach out to potential artists.
