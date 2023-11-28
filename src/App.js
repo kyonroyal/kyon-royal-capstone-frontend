@@ -15,6 +15,7 @@ function App  ()  {
           <Route path="/" element={<Gallery />} />
           <Route path="/home" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery/:id" element={<Gallery />} />
           <Route path="/find" element={<FindArtist />} />
           <Route path="/upload" element={<UploadPhoto />} />
         </Routes>

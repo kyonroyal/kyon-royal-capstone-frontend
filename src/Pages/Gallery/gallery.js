@@ -14,7 +14,7 @@ function Gallery() {
   const [currentArtist, setCurrentArtist] = useState({});
   const [nextArtists, setNextArtists] = useState([]);
   const { id } = useParams();
-
+console.log(id);
   const handleArtistSelect = (selectedArtist) => {
     if (currentArtist && currentArtist.id !== selectedArtist.id) {
       setNextArtists((prevNextArtists) => [currentArtist, ...prevNextArtists]);
@@ -49,12 +49,9 @@ function Gallery() {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://localhost:1234/api/data/`) // Adjust the endpoint based on your API
-        .then((response) => {
-          setCurrentArtist(response.data);
-        })
-        .catch((error) => console.error('Error fetching artist details:', error));
+      const artist=artists.find(artist => artist.id==id)
+      setCurrentArtist(artist)
+    console.log(artists)
     } else if (artists.length > 0) {
       setCurrentArtist(artists[0]);
     }
