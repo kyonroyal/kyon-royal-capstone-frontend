@@ -1,52 +1,37 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
+// navbar.scss
+
+@import '../../styles/partials/variables';
 
 .nav {
     background-color: $white;
     border-bottom: 1px solid $mercury;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; // Adjust the padding as needed
 
     .nav__cntnt {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding-inline: 1rem;
-        width: 100%;
 
-        @include tablet {
-            padding: 1rem 3rem;
+        .nav__logo {
+            height: 3rem;
+            width: auto;
+            margin-right: 1rem; // Adjust the margin as needed
+            cursor: pointer;
         }
 
-        @include desktop {
-            padding-inline: 8rem;
-        }
-    }
+        .nav__sub-cntnt {
+            display: flex;
+            align-items: center;
 
-    .nav__logo {
-        height: 3rem;
-        width: auto;
-        margin-block: 1rem;
-        cursor: pointer;
-
-        @include tablet {
-            height: 2rem;
-        }
-
-        @include desktop {
-            height: 1.75rem;
+            .galleryicon, .upload, .findartist {
+                height: 3rem; // Equal height for all icons
+                margin-right: 1rem; // Adjust the margin as needed
+                cursor: pointer;
+            }
         }
     }
 
-    .galleryicon, .upload, .findartist {
-        height: 3rem;
-        width: auto;
-        cursor: pointer;
-
-        @include tablet {
-            height: 2rem;
-        }
-
-        @include desktop {
-            height: 1.75rem;
-        }
-    }
+    // Add your media queries for tablet and desktop styling if necessary
 }

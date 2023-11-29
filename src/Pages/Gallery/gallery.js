@@ -4,11 +4,13 @@ import Navbar from '../../Components/NavBar/navbar.js';
 import Hero from '../../Components/Hero/hero.js';
 import NextPhotos from '../../Components/NextPhotos/nextPhotos.js';
 import ArtistInfo from '../../Components/ArtistsInfo/artistsInfo.js';
+import ImageGallery from '../../Components/ImageGallery/imageGallery.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import "../Gallery/gallery.scss"
-import SubHero from '../../Components/Subhero/subhero.js';
-import { getStorage, ref } from 'firebase/storage';
+import ToggleImage from '../../Components/ToggleImage/toggleImg.js';
+
+
 
 
 function Gallery() {
@@ -20,7 +22,7 @@ function Gallery() {
 // // Reference to the root of your storage bucket
 // const imagesListRef = ref(storage, 'artImages/');
   const { id } = useParams();
-console.log(id);
+// console.log(id);
   const handleArtistSelect = (selectedArtist) => {
     if (currentArtist && currentArtist.id !== selectedArtist.id) {
       setNextArtists((prevNextArtists) => [currentArtist, ...prevNextArtists]);
@@ -71,11 +73,13 @@ console.log(id);
     <>
       <header>
       <Navbar />
+
      {/* <SubHero /> */}
       <Hero currentArtist={currentArtist}/>
+      
       </header>
       <section>
-        
+      
       </section>
       <main className='main'>
         <section className='main__one'>

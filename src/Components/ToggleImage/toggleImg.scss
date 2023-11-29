@@ -1,0 +1,55 @@
+.img-cntr {
+    text-align: center;
+    margin: 20px;
+
+    display: flex;
+    justify-content: center;
+    .image-container {
+        
+      max-width: 50%;
+      height: 50%;
+      border: 1px solid #ddd; /* Add a border around the image */
+      border-radius: 8px; /* Optional: Rounded corners for the image */
+      overflow: hidden; /* Hide overflowing parts */
+      position: relative;
+  
+      img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease-in-out; /* Add a smooth transition effect to the image */
+      }
+  
+      .arrow-buttons {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+        transform: translateY(-50%);
+       
+      
+  
+        .toggle-button {
+          background-color: lavender; /* Green background */
+          border: none; /* Remove borders */
+          color: black; /* White text */
+          padding: 10px 20px; /* Some padding */
+          text-align: center; /* Center text */
+          text-decoration: none; /* Remove underline */
+          display: inline-block; /* Make it a block element to fill the width */
+          font-size: 16px; /* Increase font size */
+          cursor: pointer; /* Add a pointer cursor on hover */
+          border-radius: 4px; /* Optional: Rounded corners for the button */
+          margin: 0 5px; /* Optional: Add some margin between the buttons */
+          transition: background-color 0.3s ease-in-out; /* Add a smooth transition effect to the button */
+  
+          &:hover {
+            background-color: lavender; /* Add a darker green color on hover */
+          }
+        }
+      }
+    }
+  }
+  
