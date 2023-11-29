@@ -1,0 +1,30 @@
+// SubHero.scss
+
+
+.sub-hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  overflow: hidden;
+
+  .image-container {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    
+
+    img {
+      width: 3rem;
+      display: inline-block;
+      height: auto;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

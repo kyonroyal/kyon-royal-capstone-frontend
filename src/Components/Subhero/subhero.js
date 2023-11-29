@@ -1,46 +1,47 @@
-// import { useState, useEffect } from 'react';
-// import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+// SubHero.jsx
 
-// const SubHero = ({ imagesListRef }) => {
-//   const [imageUrls, setImageUrls] = useState([]);
-//   const [currentIndex, setCurrentIndex] = useState(0);
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { motion } from 'framer-motion';
 
-//   useEffect(() => {
-//     const storage = getStorage();
+const SubHero = ({ imagesListRef }) => {
+  const [imageUrls, setImageUrls] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-//     const fetchImageUrls = async () => {
-//       const response = await listAll(imagesListRef);
+  useEffect(() => {
+    const fetchImageUrls = async () => {
+      try {
+        const response = await axios.get('http://localhost:1234/api/photos');
+        setImageUrls(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-//       const urls = await Promise.all(
-//         response.items.map(async (item) => {
-//           const url = await getDownloadURL(item);
-//           return url;
-//         })
-//       );
+    fetchImageUrls();
+  }, [imagesListRef]); // Use imagesListRef in the dependency array
 
-//       setImageUrls(urls);
-//     };
+  const handleImageClick = (index) => {
+    setCurrentIndex(index);
+  };
 
-//     fetchImageUrls();
-//   }, [imagesListRef]);
+  return (
+    <div className='sub-hero-container'>
+      {imageUrls.length > 0 && (
+        <div className='image-container'>
+          {imageUrls.map((url, index) => (
+            <motion.img
+              key={index}
+              src={url}
+              alt={`Image ${index + 1}`}
+              whileHover={{ scale: 1.1 }}
+              onClick={() => handleImageClick(index)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
-//   const handleToggle = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
-//   };
-
-//   return (
-//     <div>
-//       {imageUrls.length > 0 && (
-//         <img
-//           src={imageUrls[currentIndex]}
-//           alt={`Image ${currentIndex + 1}`}
-//           style={{ width: '100%', height: 'auto' }}
-//         />
-//       )}
-
-//       <button onClick={handleToggle}>Toggle Image</button>
-//     </div>
-//   );
-// };
-
-// export default SubHero;
+export default SubHero;

@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import "../Gallery/gallery.scss"
 import ToggleImage from '../../Components/ToggleImage/toggleImg.js';
+import SubHero from '../../Components/Subhero/subhero.js';
 
 
 
@@ -74,8 +75,8 @@ function Gallery() {
       <header>
       <Navbar />
 
-     {/* <SubHero /> */}
       <Hero currentArtist={currentArtist}/>
+     <SubHero />
       
       </header>
       <section>

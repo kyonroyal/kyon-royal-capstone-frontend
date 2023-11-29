@@ -21,6 +21,12 @@ const Upload = () => {
     try {
       const snapshot = await uploadBytes(imageRef, imgUpload);
       const url = await getDownloadURL(snapshot.ref);
+      await axios.post('http://localhost:1234/api/uploadphoto', {
+        photoUrl: url
+      }
+
+      )
+      console.log(url);
       setImageUrls((prev) => [...prev, url]);
     } catch (error) {
       console.error('Error uploading image:', error);
