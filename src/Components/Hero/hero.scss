@@ -1,0 +1,19 @@
+.hero {
+    position: relative;
+    height: 400px; /* Set a fixed height for the hero section */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Add a background color if needed */
+  
+    &__artist {
+      width: 100%;
+      max-width: 200px; /* Set a maximum width for the image */
+      height: auto; /* Maintain aspect ratio */
+      object-fit: cover; /* Ensure the image covers the container */
+      border-radius: 50%; /* Apply border radius for a circular shape */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    }
+  }
+  

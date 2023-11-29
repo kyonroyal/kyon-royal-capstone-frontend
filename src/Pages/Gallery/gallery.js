@@ -7,12 +7,18 @@ import ArtistInfo from '../../Components/ArtistsInfo/artistsInfo.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import "../Gallery/gallery.scss"
+import SubHero from '../../Components/Subhero/subhero.js';
+import { getStorage, ref } from 'firebase/storage';
 
 
 function Gallery() {
   const [artists, setArtists] = useState([]);
   const [currentArtist, setCurrentArtist] = useState({});
   const [nextArtists, setNextArtists] = useState([]);
+//   const storage = getStorage();
+
+// // Reference to the root of your storage bucket
+// const imagesListRef = ref(storage, 'artImages/');
   const { id } = useParams();
 console.log(id);
   const handleArtistSelect = (selectedArtist) => {
@@ -65,8 +71,12 @@ console.log(id);
     <>
       <header>
       <Navbar />
+     {/* <SubHero /> */}
       <Hero currentArtist={currentArtist}/>
       </header>
+      <section>
+        
+      </section>
       <main className='main'>
         <section className='main__one'>
           <ArtistInfo artist={currentArtist} />

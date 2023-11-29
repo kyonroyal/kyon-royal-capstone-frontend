@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/firebase';
@@ -10,7 +10,7 @@ import publishIcon from '../../assets/gallery-add-broken.svg';
 import defaultThumbnail from '../../assets/image-outline.svg';
 import '../Upload/upload.scss';
 
-function Upload() {
+const Upload = () => {
   const navigate = useNavigate();
   const [imgUpload, setImgUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
@@ -49,10 +49,22 @@ function Upload() {
   return (
     <>
       <Navbar />
-      <h1 className="upload__header">Post Painting</h1>
-      <section className="upload">
+      <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} className="upload__header">
+        Post Painting
+      </motion.h1>
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="upload"
+      >
         <form onSubmit={handleSubmit}>
-          <article className="upload__form">
+          <motion.article
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="upload__form"
+          >
             <div className="upload__thumbnail-container">
               <h3 className="upload__thumbnail-header">Painting thumbnail</h3>
               <img className="upload__thumbnail" src={defaultThumbnail} alt="upload thumbnail" />
@@ -81,24 +93,42 @@ function Upload() {
                 id="photo-title"
               />
             </div>
-          </article>
+          </motion.article>
 
-          <div className="upload__form__buttons-container">
-            <button onClick={uploadImg} className="upload__form__submit-button" type="button">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="upload__form__buttons-container"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={uploadImg}
+              className="upload__form__submit-button"
+              type="button"
+            >
               <img className="upload__form__submit-button-icon" src={publishIcon} alt="Publish Icon" />
               Post
-            </button>
+            </motion.button>
             {imageUrls.map((url) => (
-              <img key={url} src={url} alt="Uploaded" />
+              <motion.img
+                key={url}
+                src={url}
+                alt="Uploaded"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              />
             ))}
             <Link className="upload__form__cancel-button-link" to="/">
-              <button className="upload__form__cancel-button">Cancel</button>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="upload__form__cancel-button">
+                Cancel
+              </motion.button>
             </Link>
-          </div>
+          </motion.div>
         </form>
-      </section>
+      </motion.section>
     </>
   );
-}
+};
 
 export default Upload;

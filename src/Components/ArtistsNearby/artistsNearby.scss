@@ -1,0 +1,45 @@
+// artistsNearby.scss
+
+.artists-nearby {
+    margin-top: 20px;
+  }
+  
+  .artists-nearby__header {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .artists-nearby__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .artists-nearby__group {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .artists-nearby__zip-code {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .artists-nearby__images {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .artists-nearby__profile-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  

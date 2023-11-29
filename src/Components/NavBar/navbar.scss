@@ -1,4 +1,3 @@
-// navbar.scss
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
@@ -8,16 +7,13 @@
 
     .nav__cntnt {
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center; 
+        justify-content: space-between;
+        align-items: center;
         padding-inline: 1rem;
         width: 100%;
 
         @include tablet {
-            flex-direction: row;
             padding: 1rem 3rem;
-            position: relative;
         }
 
         @include desktop {
@@ -39,15 +35,18 @@
             height: 1.75rem;
         }
     }
-}
 
-.galleryicon{
-    height: 3rem;
-}
-.upload{
-    height: 3rem;
-}
-.findartist{
-    height: 3rem;
-}
+    .galleryicon, .upload, .findartist {
+        height: 3rem;
+        width: auto;
+        cursor: pointer;
 
+        @include tablet {
+            height: 2rem;
+        }
+
+        @include desktop {
+            height: 1.75rem;
+        }
+    }
+}
