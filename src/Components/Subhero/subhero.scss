@@ -1,22 +1,21 @@
 // SubHero.scss
 
-
 .sub-hero-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5rem;
+  height: 100vh;
   overflow: hidden;
 
   .image-container {
     position: relative;
-    width: 5rem;
-    height: 5rem;
-    
+    width: 70%; // Adjust the width to your preference
+    max-width: 600px; // Set a maximum width if needed
+    margin: 0 auto; // Center the container horizontally
+    overflow: hidden;
 
     img {
-      width: 3rem;
-      display: inline-block;
+      width: 100%;
       height: auto;
       object-fit: cover;
       cursor: pointer;

@@ -76,7 +76,7 @@ function Gallery() {
       <Navbar />
 
       <Hero currentArtist={currentArtist}/>
-     <SubHero />
+     {/* <SubHero /> */}
       
       </header>
       <section>

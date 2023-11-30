@@ -37,24 +37,24 @@ Real-time chat system for artists to discuss ideas and coordinate collaborations
 
 List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
 Frontend: React
-Real-Time Collaboration: WebSockets
+Real-Time Collaboration
 Backend: Node.js with Express
 Fire base
 
 ### APIs
 
 List any external sources of data that will be used in your app.
-Geolocation API for connecting artists based on location.
+Geolocation API from Google for display of map 
 
 Google Maps Api
-Backend with User Data
+Backend with  Data
 ### Sitemap
 
 List the pages of your app with brief descriptions. You can show this visually, or write it out.
 Home
 Find Artists
 Gallery Page
-User Profile
+
 Nearest Artists
 
 ### Mockups
@@ -64,8 +64,7 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 ### Data
 
 Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
-User data (profiles, ratings, collaboration preferences)
-Chat history
+the zip code of artist and their artwork
 ### Endpoints
 
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
@@ -79,7 +78,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
 
-I will use firebase for this Aunthentication
+No it is intended for one user
 
 ## Roadmap
 

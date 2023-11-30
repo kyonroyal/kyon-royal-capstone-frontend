@@ -196,15 +196,17 @@ function Find() {
       <motion.div variants={slideIn} className="artist-form">
         <h3>Find an Artist</h3>
         <form onSubmit={handleFormSubmit}>
-          <label>
+          {/* <label>
             Name:
             <input className="artist-form1" type="text" name="name" value={formData.name} onChange={handleFormChange} />
-          </label>
+          </label> */}
           <label className="artist-form2">
             Zip Code:
             <input type="text" name="zip" value={formData.zip} onChange={handleFormChange} />
           </label>
+          <Link to="/home">
           <button type="submit">coKraft!</button>
+          </Link>
         </form>
       </motion.div>
 

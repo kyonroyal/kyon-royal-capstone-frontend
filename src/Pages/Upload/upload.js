@@ -77,7 +77,7 @@ const Upload = () => {
             </div>
 
             <div className="upload__form__input-group">
-              <label className="upload__form__label" htmlFor="photo-title">
+              {/* <label className="upload__form__label" htmlFor="photo-title">
                 Title your painting
               </label>
               <input
@@ -86,9 +86,9 @@ const Upload = () => {
                 type="text"
                 name="photo-title"
                 id="photo-title"
-              />
+              /> */}
               <label className="upload__form__label" htmlFor="photo-description">
-                Add a painting image
+                Upload an image
               </label>
               <input
                 className="upload__form__input"

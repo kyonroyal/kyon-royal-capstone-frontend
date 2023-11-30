@@ -38,14 +38,14 @@ function ArtistInfo({ artist }) {
             src={process.env.PUBLIC_URL + profileImage}
             alt={`${name}'s profile`}
           />
-          <div className='button_ctnr'>
+          {/* <div className='button_ctnr'>
             <button onClick={handleEdit}>
               Edit
             </button>
             <button onClick={handleDlt}>
               Delete
             </button>
-          </div>
+          </div> */}
           {portfolio && portfolio.length > 0 && (
             <div className='artist-info__portfolio'>
               <h3>Portfolio</h3>

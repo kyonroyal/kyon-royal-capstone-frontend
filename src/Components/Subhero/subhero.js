@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
+
 const SubHero = ({ imagesListRef }) => {
   const [imageUrls, setImageUrls] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,7 +13,8 @@ const SubHero = ({ imagesListRef }) => {
     const fetchImageUrls = async () => {
       try {
         const response = await axios.get('http://localhost:1234/api/photos');
-        setImageUrls(response.data);
+        const reversedImages = response.data.reverse();
+        setImageUrls(response.data.slice(0, 5));
       } catch (err) {
         console.error(err);
       }
@@ -36,6 +38,7 @@ const SubHero = ({ imagesListRef }) => {
               alt={`Image ${index + 1}`}
               whileHover={{ scale: 1.1 }}
               onClick={() => handleImageClick(index)}
+              style={{ width: '5rem', height: 'auto', maxWidth: '10rem', borderRadius:'20%', margin:'2rem' }}
             />
           ))}
         </div>
